@@ -1,0 +1,128 @@
+// Variables
+$primary-color: #4CAF50; // A fresh green for primary elements
+$secondary-color: #388E3C; // Darker green for hover effects and accents
+$error-color: #D32F2F; // Red for error messages
+$text-color: #212121; // Dark text color
+$background-color: #FAFAFA; // Light gray background
+
+// Mixins
+@mixin box-shadow($shadow) {
+  -webkit-box-shadow: $shadow; // For WebKit browsers
+  -moz-box-shadow: $shadow;    // For Mozilla browsers
+  box-shadow: $shadow;         // Standard box-shadow property
+}
+
+@mixin transition($property, $duration, $timing) {
+  transition: $property $duration $timing;
+}
+
+// Base styles
+body {
+  font-family: 'Roboto', sans-serif; // Modern font family
+  background-color: $background-color; // Light gray background
+  margin: 0; // Remove default margin
+  padding: 0; // Remove default padding
+  color: $text-color; // Dark text color
+}
+
+form {
+  margin: 40px auto; // Center form horizontally with larger margin
+  padding: 30px; // Increase padding inside the form
+  background-color: #fff; // White background for the form
+  border-radius: 8px; // Slightly rounded corners for the form
+  @include box-shadow(0 4px 8px rgba(0, 0, 0, 0.1)); // Subtle shadow for the form
+  max-width: 500px; // Set a maximum width for the form
+
+  label {
+    display: block; // Block-level labels
+    margin-bottom: 8px; // Space below the label
+    font-weight: 500; // Medium font weight for labels
+    color: $text-color; // Dark text color for labels
+  }
+
+  input[type="text"],
+  input[type="date"] {
+    width: 95%; 
+    padding: 12px 15px; // Padding inside inputs
+    margin-bottom: 15px; // Space below each input
+    border-radius: 4px; // Rounded corners for inputs
+    border: 1px solid #BDBDBD; // Light border
+    background-color: #F5F5F5; // Light gray background for inputs
+    @include transition(border-color, 0.3s, ease); // Smooth border-color transition
+
+    &:focus {
+      outline: none; // Remove default outline on focus
+      border-color: $primary-color; // Green border on focus
+      background-color: #fff; // White background on focus
+    }
+  }
+
+  button[type="submit"] {
+    background-color: $primary-color; // Green background for the button
+    color: #fff; // White text color
+    padding: 12px 20px; // Increased padding inside the button
+    border: none; // Remove default border
+    border-radius: 4px; // Rounded corners for the button
+    cursor: pointer; // Pointer cursor on hover
+    font-size: 16px; // Slightly larger font size for button text
+    @include transition(background-color, 0.3s, ease); // Smooth background-color transition
+  
+    &:hover {
+      background-color: $secondary-color; // Darker green on hover
+    }
+  }
+}
+
+#loader {
+  border: 8px solid #f3f3f3; // Light gray border for the loader
+  border-top: 8px solid $primary-color; // Green color for the top border
+  border-radius: 50%; // Circular loader
+  width: 60px; // Smaller width for loader
+  height: 60px; // Smaller height for loader
+  animation: spin 1.5s linear infinite; // Faster spin animation
+  margin: 30px auto; // Center the loader horizontally and add top margin
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); } // Start from 0 degrees
+  100% { transform: rotate(360deg); } // End at 360 degrees
+}
+
+#error {
+  @include box-shadow(0 0 5px rgba(0, 0, 0, 0.1)); // Subtle shadow for error messages
+  margin: 20px auto; // Center error message horizontally
+  padding: 15px; // Padding inside the error message
+  background-color: $error-color; // Red background for the error message
+  color: #fff; // White text color for error message
+  border-radius: 4px; // Rounded corners for the error message
+  max-width: 500px; // Set a maximum width for the error message
+  text-align: center; // Center the text
+}
+
+#results {
+  margin: 20px auto; // Center results container
+  padding: 20px; // Padding inside results container
+  background-color: #fff; // White background for results
+  border-radius: 8px; // Rounded corners for the results container
+  @include box-shadow(0 4px 8px rgba(0, 0, 0, 0.1)); // Subtle shadow for the results container
+  max-width: 500px; // Set a maximum width for the results container
+
+  h2 {
+    margin-top: 0; // Remove top margin for heading
+    font-size: 22px; // Slightly smaller font size for heading
+    font-weight: 500; // Medium font weight for heading
+    color: $text-color; // Dark text color
+  }
+
+  ul {
+    list-style: none; // Remove default list styling
+    padding: 0; // Remove default padding
+    margin: 0; // Remove default margin
+
+    li {
+      margin-bottom: 8px; // Space below each list item
+      font-size: 16px; // Slightly smaller font size for list items
+      color: $text-color; // Dark text color for list items
+    }
+  }
+}
